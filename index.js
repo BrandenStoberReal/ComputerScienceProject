@@ -3,4 +3,7 @@
         2021, All Rights Reserved
             MIT Licence
 */
-let Functions = require("./libs/Functions")
+
+//Libraries
+let Functions = require("./libs/Functions") // BrandenLib v2
+let Colors = require("colors") // Console Colorings 
