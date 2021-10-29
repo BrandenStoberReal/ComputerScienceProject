@@ -34,7 +34,7 @@ let Logger = {
             console.log(`[${vars.services.debugservice}] ${message}`)
         },
         SystemService(message) {
-            console.log(`[${vars.services.systemservice}] ${message}`)
+            console.log(`[${vars.services.systemservice}]`.magenta.bold + ` ${message}`)
         },
         GapiService(message) {
             console.log(`[${vars.services.gapiservice}] ${message}`.green)
