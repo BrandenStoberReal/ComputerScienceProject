@@ -7,4 +7,5 @@
 //Libraries
 let Functions = require("./libs/Functions") // BrandenLib v2
 let Colors = require("colors") // Console Colorings
+let Axios = require("axios")
 console.log("Application Starting!".blue)

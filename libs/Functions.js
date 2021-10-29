@@ -18,19 +18,40 @@ let Logger = {
     LogError(message) {
         console.log("[ERROR] ".red + message.red)
     },
-    LogServiceMessage(service, message) {
-        console.log(`[${service}] ${message}`)
+    ServiceLogging: {
+        FileService(message) {
+            console.log(`[${vars.services.fileservice}] ${message}`.magenta)
+        },
+        WebService(message) {
+            console.log(`[${vars.services.webservice}] ${message}`.green)
+        },
+        DebugService(message) {
+            console.log(`[${vars.services.debugservice}] ${message}`)
+        },
+        SystemService(message) {
+            console.log(`[${vars.services.systemservice}] ${message}`.magenta.dim)
+        },
+        GapiService(message) {
+            console.log(`[${vars.services.gapiservice}] ${message}`.green)
+        },
+        ErrorService(message) {
+            console.log(`[${vars.services.console.errorservice}] ${message}`.red)
+        },
+        LogService(message) {
+            console.log(`[${vars.services.logservice}] ${message}`)
+        }
     }
 }
 
 let vars = {
-    services = {
+    services: {
         logservice: "LOGGING SERVICE",
         fileservice: "FILESYSTEM SERVICE",
         webservice: "HTTP SERVICE",
         debugservice: "DEBUG",
         errorservice: "FALLBACK HANDLER",
-        gapiservice: "GOOGLE API"
+        gapiservice: "GOOGLE API",
+        systemservice: "SYSTEM SERVICE"
     }
 }
 
