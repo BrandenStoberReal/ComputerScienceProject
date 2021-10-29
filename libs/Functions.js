@@ -3,9 +3,9 @@
 */
 
 //Internal Vars
-global.debug = false;
-
-
+global.debug = true;
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 let Maths = {
     RandomInteger(min, max) {
@@ -34,7 +34,7 @@ let Logger = {
             console.log(`[${vars.services.debugservice}] ${message}`)
         },
         SystemService(message) {
-            console.log(`[${vars.services.systemservice}] ${message}`.magenta.dim)
+            console.log(`[${vars.services.systemservice}] ${message}`)
         },
         GapiService(message) {
             console.log(`[${vars.services.gapiservice}] ${message}`.green)
@@ -48,6 +48,47 @@ let Logger = {
     }
 }
 
+let System = {
+    async ExecuteCommand(cmd) {
+        if (global.debug === true) {
+            Logger.LogOutput("Executing the command \"" + cmd + "\"")
+        }
+        const {error, stdout, stderr} = await exec(cmd)
+        let errors = []
+        let outputs = []
+        let stderrs = []
+        let ReturnObject = {
+            errors: "",
+            outputs: "",
+            stderrs: ""
+        }
+        if (error) {
+            errors.push(error) 
+            if (global.debug === true) {
+                Logger.LogError(error)
+            }
+        }
+        if (stderr) {
+            stderrs.push(stderr)
+            if (global.debug === true) {
+                Logger.LogWarn("STDERR: " + stderr)
+            }
+        }
+        if (stdout) {
+            outputs.push(stdout)
+            if (global.debug === true) {
+                Logger.ServiceLogging.SystemService(stdout)
+            }
+        }
+        if (global.debug === true) {
+            Logger.LogOutput("Command has finished execution.")
+        }
+        ReturnObject.errors = errors.join("\n")
+        ReturnObject.outputs = outputs.join("\n")
+        ReturnObject.stderrs = stderrs.join("\n")
+        return ReturnObject
+    }
+}
 let vars = {
     services: {
         logservice: "LOGGING SERVICE",
@@ -64,5 +105,6 @@ let vars = {
 module.exports = {
     Maths,
     Logger,
-    vars
+    vars,
+    System
 }
