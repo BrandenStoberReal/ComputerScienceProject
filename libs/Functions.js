@@ -10,7 +10,7 @@ let Maths = {
 
 let Logger = {
     LogOutput(message) {
-        console.log("[INFO] ".cyan + message.cyan)
+        console.log("[INFO] " + message)
     },
     LogWarn(message) {
         console.log("[WARN] ".yellow + message.yellow)
@@ -24,7 +24,14 @@ let Logger = {
 }
 
 let vars = {
-
+    services = {
+        logservice: "LOGGING SERVICE",
+        fileservice: "FILESYSTEM SERVICE",
+        webservice: "HTTP SERVICE",
+        debugservice: "DEBUG",
+        errorservice: "FALLBACK HANDLER",
+        gapiservice: "GOOGLE API"
+    }
 }
 
 //Export categories
