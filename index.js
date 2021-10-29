@@ -8,4 +8,6 @@
 let Functions = require("./libs/Functions") // BrandenLib v2
 let Colors = require("colors") // Console Colorings
 let Axios = require("axios")
-console.log("Application Starting!".blue)
+let AppInfo = require("./package.json")
+
+console.log(`Application Starting! Version v${AppInfo.version}`.blue)
