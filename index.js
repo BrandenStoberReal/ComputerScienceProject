@@ -11,4 +11,3 @@ let Axios = require("axios")
 let AppInfo = require("./package.json")
 
 console.log(`Application Starting! Version v${AppInfo.version}`.blue)
-Functions.System.ExecuteCommand("ping google.com")
